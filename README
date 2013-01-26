@@ -1,0 +1,14 @@
+CST25 Website
+--------------
+Introduction
+
+CST25 Website is based on HTML5, CSS3, Javascript and Django. It
+serves as a classwide portal for announcements, activities, photos, 
+resources and chats.
+
+--------------
+For developers 
+
+Read INTERFACES, please.
+INTERFACES defines the structures python views use to render a HTML
+page. 

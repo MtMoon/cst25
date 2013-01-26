@@ -1,0 +1,86 @@
+Last Modified: 2013-01-26 By Thomas Dean <mrdean@yeah.net>
+--------------------------------------------------------------------
+Website Structure
+
+The website is composed of 6 parts. The details is described in the
+separated INTERFACES for each part. For example, the detailed
+INTERFACES for homepage is placed in /homepage/INTERFACES.
+
+    1. homepage
+       The index page (homepage) of the website. 
+
+    2. activity
+       The part that shows the activities held by the class.
+
+    3. chat
+       The jiecaoless chat board for classmates.
+
+    4. photo
+       The online photo viewer.
+
+    5. resources
+       The resources-downloaded site.
+
+    6. account
+       Account management page.
+
+All the templates and related images should be placed in directory
+/templates. 
+
+------------------------------------------------------------------
+How to write an INTERFACES file.
+
+First of all, English please. You see, this file is written
+obscurely due to my broken written English skills, but I'm trying to
+make it easy to understand and concise. So, don't panic. Just try it.
+
+Next is what should be written in INTERFACES. Besides what movies have 
+been watched by our dear God Two Tons and their torrents, you should
+make clear three things: the template file this part (I'm going to say
+'app' rather than 'part' in accord with django termiology, but you
+should know that they are the same thing) needs, the url to jump to
+this app, and the objects passed from Django views to templates.
+
+1. The template file this app needs.
+It specifies the file name of the template. For example, homepage app
+needs only one page, a.k.a index.html. Because all the template pages
+should be placed in /template directory, so you needn't say
+/template/index.html, just index.html is sufficient.
+
+2. The url to jump to this app. 
+It describes how to jump to this page. For example, url / is
+associated with the homepage app. Just jump to / and you'll see the
+homepage. Don't be confused. When I say /, I means
+http://www.class25.net/ or http://cst25.tsinghua.edu.cn/ or whatever. 
+But the domain name part (i.e. http://www.class25.net) is not what we
+concerns about. We concerns only about the absolute path, which is /.
+For another example, url /activity/<Year>/<Month>/<Day> is associated
+with the activity in the specified date. So if you want to show the
+detailed activity happened in 2012-12-15, you just jump to
+/activity/2012/12/15. 
+
+3. The objects passed from Django views to templates.
+It describes the texts to fill the holes in the templates. For
+example, the following is written in INTERFACES:
+
+latest_announce
+	The latest announcement.
+latest_announce.contents
+	The content of the announcement.
+latest_announce.auther
+	The author writing this announcement.
+
+And in the template page, you can write:
+<h1>{{ latest_announce.contents }}</h1>
+
+---------------------------
+Global Objects
+
+This file descibes the objects that will be passed to every template.
+
+account
+	The account that has logged in.
+account.login
+	True if user has logged in; false if no user has logged in. 
+account.name
+	The username of the account.

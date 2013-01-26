@@ -1,0 +1,57 @@
+Last Modified: 2013-01-26 By Thomas Dean <mrdean@yeah.net>
+------------------------------------------------------------
+Template Name
+
+index.html
+
+
+------------------------------------------------------------
+URL 
+
+/   --> Homepage
+
+
+------------------------------------------------------------
+Objects for index.html
+
+announce
+	A list of latest five announcements sorted by published 
+	date. announce.0 is the latest announcement of all.
+announce.<num>.pub_date
+	The published date of the announcement.
+announce.<num>.exp_date
+	The expiration date of the announcement.
+announce.<num>.day_left
+	The number of days that is left before expiration.
+announce.<num>.contents
+	The contents of the announcement.
+announce.<num>.author
+	The author of the announcement.
+
+
+birth
+	A list of five classmates of the nearest birthday. birth.0 is
+	the nearest of all.
+birth.<num>.name
+	The name of the classmate.
+birth.<num>.day
+	The birthday of the classmate.
+birth.<num>.left
+	The number of remaining days from the birthday. 0 means today
+	is his/her birthday. 
+
+
+activity
+	The latest activity held by the class.
+activity.title
+	The title of the activity.
+activity.brief
+	The brief of the activity.
+activity.img
+	One photo url for this activity. activity.img == '' if no
+	photo.
+activity.date
+	The date of the activity.
+
+
+To design the login form, consult /account/INTERFACES.
