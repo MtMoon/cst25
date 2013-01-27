@@ -54,4 +54,6 @@ activity.date
 	The date of the activity.
 
 
-To design the login form, consult /account/INTERFACES.
+To design the login form, consult /account/INTERFACES and objects for
+acc_login.html will also be passed to index.html and the form should
+conform to the design of acc_login.html.
