@@ -1,0 +1,101 @@
+Last Modified: 2013-01-27 By Thomas Dean <mrdean@yeah.net>
+------------------------------------------------------------
+Templates
+acc_login.html ---> The login page.
+acc_mdf.html ---> Modify the information of an account.
+acc_detail.html ---> Show the detailed information of an account.
+
+------------------------------------------------------------
+URLs
+/login/		---> The login page. If the account has logged in,
+                     redirect to /account/.
+/login/check   	---> The action url for login form.
+/account/    	---> The account-modification page for current
+		     logged-in account. If no account has logged in,
+		     redirect to /login/. 
+/account/modify ---> The action url for /account/.
+/account/<name>	---> Show the detailed information of the account
+		     named <name>.
+
+------------------------------------------------------------
+Objects for acc_login.html
+
+randstrval 
+	   The value for field randstr.
+
+Form for acc_login.html
+
+Form Attributes
+action="/login/check"
+method="POST"
+
+Required Fields
+Name		Type
+uname		input/text
+passwd		input/password
+randstr		input/hidden
+encpass		input/hidden
+
+Notice: The encryption method for password.
+Before submitting to /login/check, the value of field passwd should be
+encrypted with this method:
+concatenate the string value of randstr and passwd and then get the
+MD5 value of the concatenated string. This value will be the value of
+field encpass and the value of passwd will be cleared.
+
+e.g. passwd = 'test'
+     randstr = 'xyz'
+The value of encpass should be md5('xyztest'), and passwd <= ''.
+
+------------------------------------------------------------
+Objects for acc_mdf.html
+
+account
+	The account that has logged in. 
+account.login
+	True if user has logged in; false if no user has logged in. 
+account.name
+	The username of the account.
+<The following attributes are only for this template.>
+account.birth
+	The birthday of the account.
+account.sex
+	The sex of the account. True for male, false for female.
+account.signature
+	The signature of this person.
+
+randstrval 
+	   The value for field randstr.
+
+Form for acc_mdf.html
+action='/account/modify/'
+method='POST'
+
+Required Fields
+Name		Type			Description
+uname		input/text/readonly	The name of the user.
+passwd		input/password		The new password for the user.
+confirm_pass	input/password		The confirmed password.
+randstr		input/hidden		Random string.
+encpass		input/hidden		Encrypted password.
+birth		input/text		The birthday.
+sex		input/radio		two values: m for male, f for
+					female.
+signature	textarea		Signature, maximum 200 bytes.
+
+The encryption method for password is the same as acc_login.html,
+except that both passwd and confirm_pass should be cleared to ''.
+If no modification is applied to password, encpass should remain ''.
+
+------------------------------------------------------------
+Objects for acc_detail.html
+acc
+	The account that has logged in. 
+acc.name
+	The username of the account.
+acc.birth
+	The birthday of the account.
+acc.sex
+	The sex of the account. True for male, false for female.
+acc.signature
+	The signature of this person.

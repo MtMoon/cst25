@@ -1,0 +1,69 @@
+Last Modified: 2013-01-27 By Thomas Dean <mrdean@yeah.net>
+------------------------------------------------------------
+Templates
+res_all.html	Shows all the catalogs of resources.
+res_cat.html	No relation with the animal. Shows specific catalog.
+
+------------------------------------------------------------
+URLs
+/resources/		Shows all the catalogs of resources,
+			identical to /resources/1/
+/resources/<nr>/	Shows all the catalogs of resources in page <nr>.
+/resources/catalog/<id> Shows the catalog of id <id>, identical to 
+			/resources/catalog/<id>/1/
+/resources/catalog/<id>/<nr>/
+			Shows the catalog of id <id> in page <nr>.
+
+------------------------------------------------------------
+Objects for res_all.html
+
+page
+	The catalogs cannot be displayed in one single page. So
+	display th catalogs in separated pages.
+page.current
+	The current page number.
+page.total
+	The number of pages.
+
+catalog
+	The list of catalogs of resources.
+catalog.<num>.id
+	The id of the catalog.
+catalog.<num>.name
+	The name of the catalog.
+catalog.<num>.desc
+	The description of the catalog.
+
+special
+	The list of special, important or hot resources.
+special.<num>.id
+	The id of the resource.
+special.<num>.url
+	The url of the resource.
+special.<num>.name
+	The name of the resource.
+
+------------------------------------------------------------
+Objects for res_cat.html
+
+page
+page.current
+page.total
+
+catalog
+	The information of this catalog.
+catalog.id
+	The id of the catalog.
+catalog.name
+	The name of the catalog.
+catalog.desc
+	The description of the catalog.
+
+res
+	The list of resources in this catalog.
+res.<num>.id
+	The id of the resource.
+res.<num>.url
+	The url of the resource.
+res.<num>.name
+	The name of the resource.

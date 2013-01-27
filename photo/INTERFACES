@@ -1,0 +1,84 @@
+Last Modified: 2013-01-27 By Thomas Dean <mrdean@yeah.net>
+------------------------------------------------------------
+Templates
+photo_homepage.html  --> The homepage for the photo app. Shows all the
+		     	 albums. 
+photo_album.html     --> Shows one album.
+photo_view.html      --> Shows one photo.
+
+------------------------------------------------------------
+URLs
+/photo/			--> The homepage of photo app, identical to
+		      	    /photo/1/
+/photo/<nr>/	      	--> The homepage of photo app. Shows page <nr>.
+/photo/album/<id>/    	--> Shows the album with id <id>, identical to
+		      	    /photo/album/<id>/1/. 
+/photo/album/<id>/<nr>/	--> Shows the album in page <nr>.
+/photo/<id>/		--> Shows the photo with id <id>.
+
+------------------------------------------------------------
+Objects for photo_homepage.html
+
+page
+	All the albums may be not able to be listed in one page, so
+	this object describes which page we are in.
+page.current
+	Current page number, starting from 1. 
+page.total
+	The number of all the pages.
+
+album
+	List of albums shown in this page.
+album.<num>.id
+	The id of the album.
+album.<num>.name
+	The name of the album.
+album.<num>.desc
+	The description of the album.
+album.<num>.img
+	The url of the image serving as the cover of the album.
+
+------------------------------------------------------------
+Objects for photo_album.html
+
+page
+page.current
+page.total
+	Identical to photo_homepage.html
+
+photos
+	The list of photos in this album.
+photos.<num>.id
+	The id of the photo.
+photos.<num>.img
+	The image url of the photo.
+photos.<num>.desc
+	The description of the photo.
+
+------------------------------------------------------------
+Objects for photo_view.html
+
+photo
+	The attributes for the photo.
+photo.id
+	The id of the photo.
+photo.img   
+	The image url of the photo.
+photo.desc
+	The description of the photo.
+photo.album
+	The id of the album of the photo.
+photo.prev
+	The id of the previos photo in the album. -1 if current photo
+	is the first in the album.
+photo.next
+	The id of the next photo in the album. -1 of current photo is
+	the last in the album.
+photo.comment
+	The list of comments on this photo.
+photo.comment.<num>.uname
+	The author of the comment.
+photo.comment.<num>.text
+	The comment itself.
+photo.comment.<num>.date
+	The date of the comment.
