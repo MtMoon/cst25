@@ -25,22 +25,20 @@ page.current
 page.total
 	The number of pages.
 
-catalog
+catalog_list
 	The list of catalogs of resources.
-catalog.<num>.id
-	The id of the catalog.
-catalog.<num>.name
+catalog_list.<num>.url
+	The url to browse this catalog.
+catalog_list.<num>.name
 	The name of the catalog.
-catalog.<num>.desc
+catalog_list.<num>.desc
 	The description of the catalog.
 
-special
+special_list
 	The list of special, important or hot resources.
-special.<num>.id
-	The id of the resource.
-special.<num>.url
-	The url of the resource.
-special.<num>.name
+special_list.<num>.url
+	The url to download the resource.
+special_list.<num>.name
 	The name of the resource.
 
 ------------------------------------------------------------
@@ -52,8 +50,6 @@ page.total
 
 catalog
 	The information of this catalog.
-catalog.id
-	The id of the catalog.
 catalog.name
 	The name of the catalog.
 catalog.desc
@@ -61,9 +57,7 @@ catalog.desc
 
 res
 	The list of resources in this catalog.
-res.<num>.id
-	The id of the resource.
 res.<num>.url
-	The url of the resource.
+	The url to download the resource.
 res.<num>.name
 	The name of the resource.

@@ -42,10 +42,18 @@ should know that they are the same thing) needs, the url to jump to
 this app, and the objects passed from Django views to templates.
 
 1. The template file this app needs.
-It specifies the file name of the template. For example, homepage app
-needs only one page, a.k.a index.html. Because all the template pages
-should be placed in /template directory, so you needn't say
-/template/index.html, just index.html is sufficient.
+The template files should be placed in templates/ directory. And the
+static files (i.e. images, css, and js) should be placed in the
+static/ directory for their own app. For example, photo.jpg for photo
+app should be placed in photo/static/photo/ directory. And in the
+template file, you should use the image like this:
+<img src="{{ STATIC_URL }}photo/photo.jpg">
+
+The photo subdirectory in static/ is used to avoid name conflicts
+between different apps.
+
+However, common static files should be placed in common_static/
+directory. 
 
 2. The url to jump to this app. 
 It describes how to jump to this page. For example, url / is
@@ -54,10 +62,10 @@ homepage. Don't be confused. When I say /, I means
 http://www.class25.net/ or http://cst25.tsinghua.edu.cn/ or whatever. 
 But the domain name part (i.e. http://www.class25.net) is not what we
 concerns about. We concerns only about the absolute path, which is /.
-For another example, url /activity/<Year>/<Month>/<Day> is associated
+For another example, url /activity/<Year>/<Month>/<Day>/ is associated 
 with the activity in the specified date. So if you want to show the
 detailed activity happened in 2012-12-15, you just jump to
-/activity/2012/12/15. 
+/activity/2012/12/15/. 
 
 3. The objects passed from Django views to templates.
 It describes the texts to fill the holes in the templates. For

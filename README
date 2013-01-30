@@ -12,3 +12,46 @@ For developers
 Read INTERFACES, please.
 INTERFACES defines the structures python views use to render a HTML
 page. 
+
+If you have installed Django in your machine and want to test the
+website, please modify the following settings in file
+cst25/settings.py:
+
+# Modification One:
+ADMINS = (
+       # Do not modify my information, but you should add your
+       information. Like this:
+       ('Your Name', 'Your Email Address'),
+)
+
+# Modification Two:
+DATABASE = {
+	 'default' : {
+	 	   'NAME': 'The absolute path of file db', 
+		   # For example, '/home/sb/websites/cst25/db'
+		   # Or 'C:/users/sb/jobs/cst25/db'. Even in Windows, 
+		   # you should use slash '/' rather than backslash
+		   # '\'. 
+		   # 'db' is the file in the root directory of cst25.
+		   # You can see it.
+	 }
+}
+
+# Modification Three:
+MEDIA_ROOT = '<The absolute path of directory media/>'
+# The rules is like NAME in DATABASE.
+# And do not omit / at the end.
+
+# Modification Four:
+STATIC_ROOT = '<The absolute path of directory static/>'
+# The rules is like Modification Three.
+
+# Modification Five:
+TEMPLATE_DIRS = (
+	      # All the directories should be modified as before.
+)
+
+
+# If you are Li Haoda or StrengthMan, you should create a superuser
+# for yourself, too.
+

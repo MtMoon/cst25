@@ -14,7 +14,8 @@ URLs
 /photo/album/<id>/    	--> Shows the album with id <id>, identical to
 		      	    /photo/album/<id>/1/. 
 /photo/album/<id>/<nr>/	--> Shows the album in page <nr>.
-/photo/<id>/		--> Shows the photo with id <id>.
+/photo/photo/<id>/	--> Shows the photo with id <id>.
+/photo/submit_comment/  --> Action for commenting on photos.
 
 ------------------------------------------------------------
 Objects for photo_homepage.html
@@ -26,16 +27,20 @@ page.current
 	Current page number, starting from 1. 
 page.total
 	The number of all the pages.
+page.prev
+	The url of previous page.
+page.next
+	The url of next page.
 
-album
+album_list
 	List of albums shown in this page.
-album.<num>.id
-	The id of the album.
-album.<num>.name
+album_list.<num>.url
+	The url to browse this album.
+album_list.<num>.name
 	The name of the album.
-album.<num>.desc
+album_list.<num>.desc
 	The description of the album.
-album.<num>.img
+album_list.<num>.img
 	The url of the image serving as the cover of the album.
 
 ------------------------------------------------------------
@@ -44,41 +49,62 @@ Objects for photo_album.html
 page
 page.current
 page.total
+page.prev
+page.next
 	Identical to photo_homepage.html
 
-photos
+album
+	The album attributes.
+album.id
+	The url to browse this album.
+album.name
+	The name of the album.
+album.desc
+	The description of the album.
+
+photo_list
 	The list of photos in this album.
-photos.<num>.id
-	The id of the photo.
-photos.<num>.img
+photo_list.<num>.url
+	The url to browse this photo.
+photo_list.<num>.img
 	The image url of the photo.
-photos.<num>.desc
+photo_list.<num>.desc
 	The description of the photo.
 
 ------------------------------------------------------------
 Objects for photo_view.html
 
+album
+	The album of the photo.
+album.url
+	The url of the album.
+album.name
+	The name of the album.
+album.desc
+	The description of the album.
+
 photo
 	The attributes for the photo.
-photo.id
-	The id of the photo.
 photo.img   
 	The image url of the photo.
 photo.desc
 	The description of the photo.
-photo.album
-	The id of the album of the photo.
+
 photo.prev
-	The id of the previos photo in the album. -1 if current photo
+	The url of the previos photo in the album. -1 if current photo
 	is the first in the album.
 photo.next
-	The id of the next photo in the album. -1 of current photo is
+	The url of the next photo in the album. -1 of current photo is
 	the last in the album.
-photo.comment
+
+comment_list
 	The list of comments on this photo.
-photo.comment.<num>.uname
+comment_list.<num>.uname
 	The author of the comment.
-photo.comment.<num>.text
+comment_list.<num>.text
 	The comment itself.
-photo.comment.<num>.date
+comment_list.<num>.date
 	The date of the comment.
+
+Forms for photo_view.html
+Not Supported Yet :-)
