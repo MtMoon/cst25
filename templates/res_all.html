@@ -1,0 +1,16 @@
+<h2>Resources</h2>
+<table border="1">
+{% for catalog in catalog_list %}
+<tr>
+<td><a href="{{ catalog.url }}">{{ catalog.name }}</a></td>
+<td>{{ catalog.desc }}</td>
+</tr>
+{% endfor %}
+</table>
+<p>{{ page.current }} / {{ page.total }}</p>
+{% if page.prev != '' %}
+<a href="{{ page.prev }}">Prev Page</a>&nbsp;&nbsp;
+{% endif %}
+{% if page.next != '' %}
+<a href="{{ page.next }}">Next Page</a>
+{% endif %}
