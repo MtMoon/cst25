@@ -3,4 +3,4 @@
 ALBUM_NPP = 16
 
 # How many photos are shown in an album page.
-PHOTO_NPP = 1
+PHOTO_NPP = 16
