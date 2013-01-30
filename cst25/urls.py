@@ -6,6 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^photo/', include('photo.urls')),
+    url(r'^resources/', include('resources.urls')),
     # Examples:
     # url(r'^$', 'cst25.views.home', name='home'),
     # url(r'^cst25/', include('cst25.foo.urls')),
