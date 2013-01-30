@@ -1,0 +1,21 @@
+<p><img src="{{ STATIC_URL}}photo/photo.jpg"></p>
+<h2>Album: <a href="{{ album.url }}">{{ album.name }}</a></h2>
+<p>Album Description: {{ album.desc }}</p>
+<img src="{{ photo.img }}" height=300 width=300>
+<p>{{ photo.desc }}</p>
+<p>
+{% if photo.prev != -1 %}
+<a href="{{ photo.prev }}">Prev</a>
+{% endif %}&nbsp;&nbsp;
+{% if photo.next != -1 %}
+<a href="{{ photo.next }}">Next</a>
+{% endif %}
+</p>
+<p>Comment</p>
+{% for comment in comment_list %}
+<p>{{ comment.uname }} [{{ comment.date }}]</p>
+<p>{{ comment.text }}</p>
+<p>&nbsp;</p>
+{% endfor %}
+
+

@@ -1,0 +1,17 @@
+<p><img src="{{ STATIC_URL }}photo/photo.jpg"></p>
+<a href="{{ album.url }}"><h2>{{ album.name }}</h2><a>
+<p>{{ album.desc }}</p>
+<table>
+{% for photo in photo_list %}
+<tr><td><a href="{{ photo.url }}"><img src="{{ photo.img }}" height=48 width=48></a></td>
+<td>{{ photo.desc }}</td>
+</tr>
+{% endfor %}
+</table>
+<p>{{ page.current }} / {{ page.total }}</p>
+{% if page.prev != '' %}
+<a href="{{ page.prev }}">Prev Page</a>&nbsp;&nbsp;
+{% endif %}
+{% if page.next != '' %}
+<a href="{{ page.next }}">Next Page</a>
+{% endif %}

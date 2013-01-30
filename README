@@ -43,12 +43,13 @@ MEDIA_ROOT = '<The absolute path of directory media/>'
 # And do not omit / at the end.
 
 # Modification Four:
-STATIC_ROOT = '<The absolute path of directory static/>'
-# The rules is like Modification Three.
-
-# Modification Five:
 TEMPLATE_DIRS = (
 	      # All the directories should be modified as before.
+)
+
+# Modification Five:
+STATICFILES_DIRS = (
+# Directories should be modified.
 )
 
 
