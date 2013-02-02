@@ -2,8 +2,12 @@
   -- Author: Thomas Dean <mrdean@yeah.net> --
   -- Date: 2013-02-01 -->
 
+<!-- acc_login.html shows one method to show error messages --
+  -- This is anothor method to show error messages together -->
+{{ form.errors }}
+
 <!-- The method and action of the form shouldn't be changede. -->
-<form method="post" action="/login/modify">
+<form method="post" action="/account/modify/">
   <table>
     <!-- You may not understand what csrf_token is used for. --
       -- But you just need to write it inside the form. -->

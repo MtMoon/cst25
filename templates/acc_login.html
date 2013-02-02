@@ -1,8 +1,6 @@
-<!-- form.errors indicates whether errors happen during login. -->
 {% if form.errors %}
-<p> Username and password dismatches.</p>
+<p>Login failed.</p>
 {% endif %}
-
 <!-- The method and action of the form shouldn't be changed. -->
 <form method="post" action="/account/login/">
   <!-- You may not understand what csrf_token is used for. --
@@ -13,17 +11,17 @@
       <td>User Name</td>
       <!-- form.username will be the input widget for username -->
       <td>{{ form.username }}</td>
+      <!-- See how to handle error messages. -->
+      <td>{{ form.username.errors }}</td>
     </tr>
     <tr>
       <td>Password</td>
       <!-- form.password will be the input widget for password -->
       <td>{{ form.password }}</td>
+      <!-- See how to handle password error messages. -->
+      <td>{{ form.password.errors }}</td>
     </tr>
   </table>
   <!-- Do not forget the submit button, the value is arbitrary.  -->
   <input type="submit" value="login" />
-  <!-- This hidden field is used to indicate what url to redirect to --
-    -- after successfully logged in. You need just include it somewhere --
-    -- in the form. -->
-  <input type="hidden" name="next" value="{{ next }}" />
 </form>

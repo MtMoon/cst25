@@ -162,3 +162,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 AUTH_PROFILE_MODULE='account.models.UserProfile'
+
+# The Login URL
+LOGIN_URL = '/account/login/'

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from account.models import UserProfile
 from account.forms import ModifForm, LoginForm
-from account.procedures import check_modify, NoSuchUser
+from account.procedures import check_modify, get_profile, form_load, NoSuchUser
 from account.settings import *
 
 @login_required
@@ -35,18 +35,19 @@ def modify(request):
 @login_required
 def details(request, username):
     try:
-        user = UserProfile.objects.get(name__exact=username)
-    except UserProfile.DoesNotExist:
+        userobj = User.objects.get(username=username)
+    except User.DoesNotExist:
         raise Http404
+    profile = get_profile(userobj)
     return render_to_response('acc_detail.html',
-                              { 'acc': user },
+                              { 'acc': profile },
                               context_instance=RequestContext(request))
 
 @login_required
 def details_myself(request):
     return details(request, request.user.username)
 
-def login(request):
+def view_login(request):
     if request.user.is_authenticated():
         try:
             return HttpResponseRedirect(request.REQUEST['next'])
@@ -60,25 +61,26 @@ def login(request):
                                   context_instance=RequestContext(request))
 
 def do_login(request):
-    post = dict(request.POST)
-    post['next'] = request.REQUEST['next'] or LOGIN_REDIRECT_URL
-    form = LoginForm(post)
+    try:
+        nexturl = request.REQUEST['next']
+    except KeyError:
+        nexturl = LOGIN_REDIRECT_URL
+    form = LoginForm(request.POST)
     if not form.is_valid():
         return render_to_response('acc_login.html',
                                   {'form': form },
                                   context_instance=RequestContext(request))
-        username = form.cleaned_data['username']
-        password = form.cleaned_data['password']
-        user = authenticate(username=username, password=password)
-        if not user or not user.is_active():
-            form.errors['username'] = 'No such user.'
-            return render_to_response('acc_login.html',
-                                      {'form': form },
-                                      context_instance=RequestContext(request))
-        login(request, user)
-        return HttpResponseRedirect(form.cleaned_data['next'])
+    username = form.cleaned_data['username']
+    password = form.cleaned_data['password']
+    user = authenticate(username=username, password=password)
+    if not user or not user.is_active:
+        form.errors['username'] = "No such User"
+        return render_to_response('acc_login.html',
+                                  {'form': form },
+                                  context_instance=RequestContext(request))
+    login(request, user)
+    return HttpResponseRedirect(nexturl)
 
-@login_required
 def do_logout(request):
     logout(request)
     try:

@@ -15,33 +15,22 @@ def check_modify(request, form):
         userobj = User.objects.get(username=form.cleaned_data['username'])
     except User.DoesNotExist:
         raise NoSuchUser
-    try:
-        profile = UserProfile.objects.get(user=userobj)
-    except UserProfile.DoesNotExist:
-        profile = UserProfile(user=userobj)
+    profile = get_profile(userobj)
     profile.birth = form.cleaned_data['birth']
-    if form.cleaned_data['password'] != form.cleaned_data['confirmed_password']:
-        return False
-    elif form.cleaned_data['password']:
+    if form.cleaned_data['password']:
         userobj.set_password(form.cleaned_data['confirmed_password'])
         userobj.save()
-    if form.cleaned_data['sex'] == 'm':
-        profile.sex = True
-    else:
-        profile.sex = False
+    profile.sex = form.cleaned_data['sex']
     profile.signature = form.cleaned_data['signature']
     profile.save()
     return True
 
 def form_load(uname):
     try:
-        userobj = User.objects.get(userame=uname)
+        userobj = User.objects.get(username=uname)
     except User.DoesNotExist:
         raise NoSuchUser
-    try:
-        profile = UserProfile.objects.get(user__username=username)
-    except UserProfile.DoesNotExist:
-        profile = UserProfile(user=userobj)
+    profile = get_profile(userobj)
     formdata = {'username': uname,
                 'password': '',
                 'birth': profile.birth,
@@ -50,4 +39,10 @@ def form_load(uname):
     form = ModifForm(formdata)
     return form
 
-    
+def get_profile(userobj):
+    try:
+        profile = UserProfile.objects.get(user=userobj)
+    except UserProfile.DoesNotExist:
+        profile = UserProfile(user=userobj)
+        profile.save()
+    return profile

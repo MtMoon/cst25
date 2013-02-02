@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    birth = models.DateField('Birthday')
-    sex = models.BooleanField('Sex')
-    signature = models.CharField('Signature', max_length=200)
+    birth = models.DateField('Birthday', default=date(1990,1,1))
+    sex = models.BooleanField('Sex', default=True)
+    signature = models.CharField('Signature', max_length=200, blank=True)
     def __unicode__(self):
         return self.user.username
     def left(self):

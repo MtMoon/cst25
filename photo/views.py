@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -7,12 +8,15 @@ from photo.urls import str_homepage
 from photo.settings import *
 from libs.page import get_page_dict, apage
 
+@login_required
 def show_homepage_first(request):
     return show_homepage(request, 1)
 
+@login_required
 def show_album_first(request, album_id):
     return show_album(request, album_id, 1)
 
+@login_required
 def show_homepage(request, nr):
     album_list = apage(Album.objects.all(), int(nr), ALBUM_NPP)
     # No album actually in this page.
@@ -24,6 +28,7 @@ def show_homepage(request, nr):
                                                     ALBUM_NPP, str_homepage(), int(nr))},
                               context_instance=RequestContext(request))
 
+@login_required
 def show_album(request, album_id, nr):
     try:
         album = Album.objects.get(pk=album_id)
@@ -41,7 +46,7 @@ def show_album(request, album_id, nr):
                                                     int(nr))},
                               context_instance=RequestContext(request))
     
-
+@login_required
 def show_photo(request, photo_id):
     photo_resp = {}
     try:

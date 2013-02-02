@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -6,12 +7,15 @@ from resources.urls import wrap_catalog_url, str_homepage_url, str_catalog_url
 from resources.settings import *
 from libs.page import get_page_dict, apage
 
+@login_required
 def show_homepage_first(request):
     return show_homepage(request, 1)
 
+@login_required
 def show_catalog_first(request, catalog_id):
     return show_catalog(request, catalog_id, 1)
 
+@login_required
 def show_homepage(request, nr):
     catalog_list = apage(Catalog.objects.all(), int(nr), CATALOG_NPP)
     # No album actually in this page.
@@ -22,7 +26,7 @@ def show_homepage(request, nr):
                                'page':get_page_dict(Catalog.objects.all(),
                                                     CATALOG_NPP, str_homepage_url(), int(nr))},
                               context_instance=RequestContext(request))
-
+@login_required
 def show_catalog(request, catalog_id, nr):
     try:
         catalog = Catalog.objects.get(pk=catalog_id)
