@@ -73,11 +73,6 @@ def do_login(request):
     username = form.cleaned_data['username']
     password = form.cleaned_data['password']
     user = authenticate(username=username, password=password)
-    if not user or not user.is_active:
-        form.errors['username'] = "No such User"
-        return render_to_response('acc_login.html',
-                                  {'form': form },
-                                  context_instance=RequestContext(request))
     login(request, user)
     return HttpResponseRedirect(nexturl)
 

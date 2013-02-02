@@ -56,6 +56,8 @@ class LoginForm(forms.Form):
         if username and password:
             try:
                 userobj = User.objects.get(username=username)
+                if not userobj.is_active:
+                    raise User.DoesNotExist
             except User.DoesNotExist:
                 msg="User {0} does not exist".format(username)
                 self._errors['username'] = self.error_class([msg])
