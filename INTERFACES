@@ -86,9 +86,7 @@ Global Objects
 
 This file descibes the objects that will be passed to every template.
 
-account
-	The account that has logged in.
-account.login
-	True if user has logged in; false if no user has logged in. 
-account.name
-	The username of the account.
+user.is_authenticated
+	Returns True if any user has logged in. 
+user.username
+	The username of the logged-in user.

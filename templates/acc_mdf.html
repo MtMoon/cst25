@@ -1,0 +1,38 @@
+<!-- Description: The account modification page. --
+  -- Author: Thomas Dean <mrdean@yeah.net> --
+  -- Date: 2013-02-01 -->
+
+<!-- The method and action of the form shouldn't be changede. -->
+<form method="post" action="/login/modify">
+  <table>
+    <!-- You may not understand what csrf_token is used for. --
+      -- But you just need to write it inside the form. -->
+    {% csrf_token %}
+    <tr>
+      <td>Username</td>
+      <td>{{ form.username }}</td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td>{{ form.password }}</td>
+    </tr>
+    <tr>
+      <td>Confirmed Password</td>
+      <td>{{ form.confirmed_password }}</td>
+    </tr>
+    <tr>
+      <td>Birthday</td>
+      <td>{{ form.birth }}</td>
+    </tr>
+    <tr>
+      <td>Sex</td>
+      <td>{{ form.sex }}</td>
+    </tr>
+    <tr>
+      <td>Signature</td>
+      <td>{{ form.signature }}</td>
+    </tr>
+  </table>
+  <!-- The value of submit button is arbitrary. -->
+  <input type="submit" value="modify">
+</form>
