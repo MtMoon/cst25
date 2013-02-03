@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils import timezone
 from photo.models import Album, Photo, Comment
+from photo.forms import CommentForm
 from photo.urls import wrap_photo_url, wrap_album_url, str_album_page
 from photo.urls import str_homepage
 from photo.settings import *
@@ -49,19 +50,28 @@ def show_album(request, album_id, nr):
 
 @login_required
 def show_photo(request, photo_id):
-    if request.method == 'POST':
-        comment_on_photo(request, photo_id)
-    return show_photo_page(request, photo_id)
-
-def comment_on_photo(request, photo_id):
-    pass
-
-def show_photo_page(request, photo_id):
-    photo_resp = {}
     try:
         photo = Photo.objects.get(pk=photo_id)
     except Photo.DoesNotExist:
         return HttpResponseRedirect('/photo/')
+    if request.method == 'POST':
+        form=comment_on_photo(request, photo)
+    else: # request.method == 'GET'
+        form=CommentForm()
+    return show_photo_page(request, photo, form)
+
+def comment_on_photo(request, photo):
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        comment = Comment(uname=request.user.username,
+                          text=form.cleaned_data['comment'],
+                          time=timezone.now(),
+                          photo=photo)
+        comment.save()
+    return form
+
+def show_photo_page(request, photo, form):
+    photo_resp = {}
     photo_resp['url'] = photo.url()
     photo_resp['img'] = photo.img()
     photo_resp['desc'] = photo.desc
@@ -70,22 +80,23 @@ def show_photo_page(request, photo_id):
     if photo_list.count() == 1:
         photo_resp['prev'] = -1
         photo_resp['next'] = -1
-    elif photo_list[0].id == int(photo_id):
+    elif photo_list[0].id == photo.id:
         photo_resp['prev'] = -1
         photo_resp['next'] = wrap_photo_url(photo_list[1].id)
-    elif photo_list[photo_list.count()-1].id == int(photo_id):
+    elif photo_list[photo_list.count()-1].id == photo.id:
         photo_resp['prev'] = wrap_photo_url(photo_list[photo_list.count()-2].id)
         photo_resp['next'] = -1
     else:
         for i in range(photo_list.count()):
-            if photo_list[i].id == int(photo_id):
+            if photo_list[i].id == photo.id:
                 photo_resp['prev'] == wrap_photo_url(photo_list[i-1].id)
                 photo_resp['next'] == wrap_photo_url(photo_list[i+1].id)
                 break
-    comment = Comment.objects.filter(photo__pk=photo_id)
+    comment = Comment.objects.filter(photo__pk=photo.id)
     return render_to_response('photo_view.html',
                               {'photo': photo_resp,
                                'album': photo.album,
-                               'comment_list': comment},
+                               'comment_list': comment,
+                               'form': form },
                               context_instance=RequestContext(request));
 

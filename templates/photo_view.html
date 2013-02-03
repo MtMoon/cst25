@@ -13,12 +13,14 @@
 </p>
 <p>Comment</p>
 {% for comment in comment_list %}
-<p>{{ comment.uname }} [{{ comment.date }}]</p>
+<p>{{ comment.uname }} [{{ comment.time }}]</p>
 <p>{{ comment.text }}</p>
 <p>&nbsp;</p>
 {% endfor %}
 <!-- Comment Form -->
 <form method="post" action="{{ photo.url }}">
+  <!-- Do not forget csrf_token -->
+  {% csrf_token %}
   <p>Your comment:</p>
   <p>{{ form.comment }}</p>
   <input type="submit" value="Submit" />

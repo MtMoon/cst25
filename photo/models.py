@@ -26,7 +26,7 @@ class Photo(models.Model):
 class Comment(models.Model):
     uname = models.CharField('Author Name', max_length=16)
     text = models.CharField('Text', max_length=140)
-    date = models.DateField('Date Published')
+    time = models.DateTimeField('Date and Time')
     photo = models.ForeignKey('Photo')
     def __unicode__(self):
         return "[{0}] {1}".format(self.uname, self.text[:10])
