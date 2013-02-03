@@ -17,5 +17,10 @@
 <p>{{ comment.text }}</p>
 <p>&nbsp;</p>
 {% endfor %}
-
+<!-- Comment Form -->
+<form method="post" action="{{ photo.url }}">
+  <p>Your comment:</p>
+  <p>{{ form.comment }}</p>
+  <input type="submit" value="Submit" />
+</form>
 

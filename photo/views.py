@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils import timezone
 from photo.models import Album, Photo, Comment
 from photo.urls import wrap_photo_url, wrap_album_url, str_album_page
 from photo.urls import str_homepage
@@ -45,9 +46,17 @@ def show_album(request, album_id, nr):
                                                     str_album_page(album_id),
                                                     int(nr))},
                               context_instance=RequestContext(request))
-    
+
 @login_required
 def show_photo(request, photo_id):
+    if request.method == 'POST':
+        comment_on_photo(request, photo_id)
+    return show_photo_page(request, photo_id)
+
+def comment_on_photo(request, photo_id):
+    pass
+
+def show_photo_page(request, photo_id):
     photo_resp = {}
     try:
         photo = Photo.objects.get(pk=photo_id)

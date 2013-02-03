@@ -85,6 +85,8 @@ album.desc
 
 photo
 	The attributes for the photo.
+photo.url
+	The url of this page.
 photo.img   
 	The image url of the photo.
 photo.desc
@@ -107,4 +109,8 @@ comment_list.<num>.date
 	The date of the comment.
 
 Forms for photo_view.html
-Not Supported Yet :-)
+form
+method="post" action="{{ photo.url }}"
+
+form.comment textarea
+	     The comment box.
