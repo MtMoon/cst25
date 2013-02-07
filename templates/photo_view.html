@@ -41,6 +41,14 @@
             left:80%;
             top:85%;
         }
+        #form
+        {
+            position:absolute;
+            left:60%;
+            top:60%;
+        }
+            
+        
     </style>
 </head>
 
@@ -72,6 +80,14 @@
      
      <h2 id="homepage_album"><a href="{{ album.url }}">{{ album.name }}</a></h2>
      <button id="homepage" onclick="href='{{ homepage }}'">·µ»ØÖ÷Ò³</button>
+     
+    <form method="post" action="{{ photo.url }}" id="form">
+        {% csrf_token %}
+        <p>Your comment:</p>
+        <p>{{ form.comment }}</p>
+        <input type="submit" value="Submit" />
+    </form>
+
     
 
 </body>
