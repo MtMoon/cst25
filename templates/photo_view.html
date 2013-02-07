@@ -32,14 +32,14 @@
         #homepage
         {
             position:absolute;
-            left:5%;
-            top:90%;
+            left:15%;
+            top:85%;
         }
         #homepage_album
         {
             position:absolute;
-            left:15%;
-            top:85%;
+            left:85%;
+            top:10%;
         }
         #form
         {
@@ -71,15 +71,15 @@
     
     <p id="page">{{page.current}} / {{page.total}}</p>
     {% if photo.prev != -1 %}
-        <button id="last" onclick="href='{{photo.prev}}'">last photo</button>
+        <a id="last" href="{{photo.prev}}">last photo</a>
     {% endif %}
     
     {% if photo.next != -1 %}    
-        <button id="next" onclick="href='{{photo.next}}'">next photo</button>
+        <a id="next" href="{{photo.next}}">next photo</a>
     {% endif %}    
      
      <h2 id="homepage_album"><a href="{{ album.url }}">{{ album.name }}</a></h2>
-     <button id="homepage" onclick="href='{{ homepage }}'">Back to homepage</button>
+     <a id="homepage" href="{{ homepage }}">Back to homepage</button>
      
     <form method="post" action="{{ photo.url }}" id="form">
         {% csrf_token %}

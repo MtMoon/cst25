@@ -70,18 +70,18 @@
         </tr>
     </table>
     <h2 id="title">{{album.name}}</h2>
-    <button id="homepage_album" onclick="href='{{album.url}}'">back to pohot album</button>
-    <button id="homepage" onclick="href=''">back to homepage</button>
+    <a id="homepage_album" href="{{album.url}}">back to pohot album</a>
+    <a id="homepage" href="{{homepage}}">back to homepage</a>
     
     <div id="ln"> 
         {% if page.prev != '' %}
-            <button onclick="href='{{ page.prev }}'">last page</a>&nbsp;&nbsp;
+            <a href="{{ page.prev }}">last page</a>&nbsp;&nbsp;
         {% endif %}
     
          <p>{{ page.current }} / {{ page.total }}</p>
     
         {% if page.next != '' %}
-            <button onclick="href="{{ page.next }}">next page</a>
+            <a href="{{ page.next }}">next page</a>
         {% endif %}
     </div>
     
