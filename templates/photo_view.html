@@ -1,6 +1,7 @@
 <!DOCTYPT html>
 <head>
     <title>{{album.name}}</title>
+    <meta http-equiv="Content-Type" content="text/html"; charset="gb2312" />
     <meta name="keywords" content="classpage photo album" /> 
     <meta name="author" contenr="Mt.Moon" />
     <style>
@@ -49,7 +50,7 @@
     </table>
     
     <table id="comment" border="1">
-        <tr><td colspan="2">Photo comments</td><tr>
+        <tr><td colspan="2">相片评论列表</td><tr>
         {% for comment in comment_list %}
             <tr>
                 <td>{{ comment.uname }} [{{ comment.date }}]</td>
@@ -62,15 +63,15 @@
     
     <p id="page">{{page.current}} / {{page.total}}</p>
     {% if photo.prev != -1 %}
-        <button id="last" onclick="href='{{photo.prev}}'">last page</button>
+        <button id="last" onclick="href='{{photo.prev}}'">上一张</button>
     {% endif %}
     
     {% if photo.next != -1 %}    
-        <button id="next" onclick="href='{{photo.next}}'">next page</button>
+        <button id="next" onclick="href='{{photo.next}}'">下一张</button>
     {% endif %}    
      
      <h2 id="homepage_album"><a href="{{ album.url }}">{{ album.name }}</a></h2>
-     <button id="homepage" onclick="href='{{ homepage }}'">Back to homepage</button>
+     <button id="homepage" onclick="href='{{ homepage }}'">返回主页</button>
     
 
 </body>

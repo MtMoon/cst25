@@ -4,6 +4,7 @@
 <head>
 
 <title>{{album.name}}</title>
+<meta http-equiv="Content-Type" content="text/html"; charset="gb2312" />
 <meta name="keywords" content="classpage photo album" /> 
 <meta name="author" contenr="Mt.Moon" />
 
@@ -69,18 +70,18 @@
         </tr>
     </table>
     <h2 id="title">{{album.name}}</h2>
-    <button id="homepage_album" onclick="href='{{album.url}}'">Back to album list</button>
-    <button id="homepage" onclick="href=''">Back to homepage</button>
+    <button id="homepage_album" onclick="href='{{album.url}}'">返回相册列表</button>
+    <button id="homepage" onclick="href=''">返回主页</button>
     
     <div id="ln"> 
         {% if page.prev != '' %}
-            <button onclick="href='{{ page.prev }}'">last Page</a>&nbsp;&nbsp;
+            <button onclick="href='{{ page.prev }}'">上一页</a>&nbsp;&nbsp;
         {% endif %}
     
          <p>{{ page.current }} / {{ page.total }}</p>
     
         {% if page.next != '' %}
-            <button onclick="href="{{ page.next }}">Next Page</a>
+            <button onclick="href="{{ page.next }}">下一页</a>
         {% endif %}
     </div>
     

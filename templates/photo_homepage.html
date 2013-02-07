@@ -3,7 +3,8 @@
 
 <head>
 
-<title>class album</title>
+<title>班级相册</title>
+<meta http-equiv="Content-Type" content="text/html"; charset="gb2312" />
 <meta name="keywords" content="classpage photo album" /> 
 <meta name="author" contenr="Mt.Moon" />
 
@@ -23,8 +24,8 @@
     #page
     {
         position:absolute;
-        left:25%;
-        top:95%;
+        left:35%;
+        top:90%;
     }
         
 </style>
@@ -46,15 +47,15 @@
     
     <div id="ln">
         {% if page.prev != '' %}
-            <button id="last" onclick="href='{{page.prev}}'">last page</button>
+            <button id="last" onclick="href='{{page.prev}}'">上一页</button>
         {% endif %}
-    
+        &nbp,&nbp,&nbp
         {% if page.next != ' ' %} 
-            <button id="next" onclick="href='{{page.next}}'">next page</button> 
+            <button id="next" onclick="href='{{page.next}}'">下一页</button> 
         {% endif %}
     </div>
     
-    <button id="back" onclick="href='{{homepage}}'">back to homepage</button>
+    <button id="back" onclick="href='{{homepage}}'">返回主页</button>
     
 </body>
 
