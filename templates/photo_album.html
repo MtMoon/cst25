@@ -1,17 +1,88 @@
-<p><img src="{{ STATIC_URL }}photo/photo.jpg"></p>
-<a href="{{ album.url }}"><h2>{{ album.name }}</h2><a>
-<p>{{ album.desc }}</p>
-<table>
-{% for photo in photo_list %}
-<tr><td><a href="{{ photo.url }}"><img src="{{ photo.img }}" height=48 width=48></a></td>
-<td>{{ photo.desc }}</td>
-</tr>
-{% endfor %}
-</table>
-<p>{{ page.current }} / {{ page.total }}</p>
-{% if page.prev != '' %}
-<a href="{{ page.prev }}">Prev Page</a>&nbsp;&nbsp;
-{% endif %}
-{% if page.next != '' %}
-<a href="{{ page.next }}">Next Page</a>
-{% endif %}
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+<title>{{album.name}}</title>
+<meta name="keywords" content="classpage photo album" /> 
+<meta name="author" contenr="Mt.Moon" />
+
+<style>
+    #photo
+    {
+        position:absolute;
+        left:40%;
+        top:10%;
+    }
+  
+    #describe
+    {
+        position:absolute;
+        left:10%;
+        top:20%;
+    }
+    #homepage
+    {
+        position:absolute;
+        left:10%;
+        top:85%;
+    }
+    #homepage_album
+    {
+        position:absolute;
+        left:10%;
+        top:80%;
+    }
+    #title
+    {
+        position:absolute;
+        left:20%;
+        top:6%;
+    }
+    #ln
+    {
+        position:absolute;
+        left:40%;
+        top:85%;
+    }
+                
+    
+        
+</style>
+
+</head>
+
+<body  background="{{ STATIC_URL }}photo/albumbg1.jpg">
+    <table id="photo">
+        {% for photo in photo_list %}
+        <tr>
+            <td><a href="{{ photo.url }}"><img src="{{ photo.img }}" height=48 width=48></a></td>
+            <td>{{ photo.desc }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    
+    <table border="1" id="describe">
+        <tr>
+            <td>{{ album.desc }}</td>
+        </tr>
+    </table>
+    <h2 id="title">{{album.name}}</h2>
+    <button id="homepage_album" onclick="href='{{album.url}}'">Back to album list</button>
+    <button id="homepage" onclick="href=''">Back to homepage</button>
+    
+    <div id="ln"> 
+        {% if page.prev != '' %}
+            <button onclick="href='{{ page.prev }}'">last Page</a>&nbsp;&nbsp;
+        {% endif %}
+    
+         <p>{{ page.current }} / {{ page.total }}</p>
+    
+        {% if page.next != '' %}
+            <button onclick="href="{{ page.next }}">Next Page</a>
+        {% endif %}
+    </div>
+    
+</body>
+</html>

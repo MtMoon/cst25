@@ -1,28 +1,80 @@
-<p><img src="{{ STATIC_URL}}photo/photo.jpg"></p>
-<h2>Album: <a href="{{ album.url }}">{{ album.name }}</a></h2>
-<p>Album Description: {{ album.desc }}</p>
-<img src="{{ photo.img }}" height=300 width=300>
-<p>{{ photo.desc }}</p>
-<p>
-{% if photo.prev != -1 %}
-<a href="{{ photo.prev }}">Prev</a>
-{% endif %}&nbsp;&nbsp;
-{% if photo.next != -1 %}
-<a href="{{ photo.next }}">Next</a>
-{% endif %}
-</p>
-<p>Comment</p>
-{% for comment in comment_list %}
-<p>{{ comment.uname }} [{{ comment.time }}]</p>
-<p>{{ comment.text }}</p>
-<p>&nbsp;</p>
-{% endfor %}
-<!-- Comment Form -->
-<form method="post" action="{{ photo.url }}">
-  <!-- Do not forget csrf_token -->
-  {% csrf_token %}
-  <p>Your comment:</p>
-  <p>{{ form.comment }}</p>
-  <input type="submit" value="Submit" />
-</form>
+<!DOCTYPT html>
+<head>
+    <title>{{album.name}}</title>
+    <meta name="keywords" content="classpage photo album" /> 
+    <meta name="author" contenr="Mt.Moon" />
+    <style>
+        #last
+        {
+            position:absolute;
+            left:10%;
+            top:90%;
+        }
+        #next
+        {
+            position:absolute;
+            left:20%;
+            top:90%;
+        }
+        #page
+        {
+            position:absolute;
+            left:12%;
+            top:90%;
+        }
+        #comment
+        {
+            position:absolute;
+            left:55%;
+            top:5%;
+        }
+        #homepage
+        {
+            position:absolute;
+            left:70%;
+            top:90%;
+        }
+        #homepage_album
+        {
+            position:absolute;
+            left:80%;
+            top:85%;
+        }
+    </style>
+</head>
+
+<body background="{{ STATIC_URL }}photo/photoviewbg.jpg">
+    <table id="photo" border="1">
+        <tr><td><img src="{{photo.img}}" width="700" height="480" /></td></tr>
+    </table>
+    
+    <table id="comment" border="1">
+        <tr><td colspan="2">Photo comments</td><tr>
+        {% for comment in comment_list %}
+            <tr>
+                <td>{{ comment.uname }} [{{ comment.date }}]</td>
+                <td>{{ comment.text }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+    
+    
+    <p id="page">{{page.current}} / {{page.total}}</p>
+    {% if photo.prev != -1 %}
+        <button id="last" onclick="href='{{photo.prev}}'">last page</button>
+    {% endif %}
+    
+    {% if photo.next != -1 %}    
+        <button id="next" onclick="href='{{photo.next}}'">next page</button>
+    {% endif %}    
+     
+     <h2 id="homepage_album"><a href="{{ album.url }}">{{ album.name }}</a></h2>
+     <button id="homepage" onclick="href='{{ homepage }}'">Back to homepage</button>
+    
+
+</body>
+</html>
+
+    
 

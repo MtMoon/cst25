@@ -1,16 +1,68 @@
-<h2>Catalog</h2><a href="{{ catalog.url }}"><h2>{{ catalog.name }}</h2></a>
-<p>Description: {{ catalog.desc }}</p>
-{% if not res_list %}
-<p>No resources yet:-)</p>
-{% else %}
-{% for res in res_list %}
-<p><a href="{{ res.url }}">{{ res.name }}</a></p>
-{% endfor %}
-{% endif %}
-<p>{{ page.current }} / {{ page.total }}</p>
-{% if page.prev != '' %}
-<a href="{{ page.prev }}">Prev Page</a>&nbsp;&nbsp;
-{% endif %}
-{% if page.next != '' %}
-<a href="{{ page.next }}">Next Page</a>
-{% endif %}
+<!DOCTYPT html>
+<head>
+    <title>{{ catalog.name }}</title>
+    <meta name="keywords" content="classpage resources" /> 
+    <meta name="author" contenr="Mt.Moon" />
+    <style>
+        #last
+        {
+            position:absolute;
+            left:40%;
+            top:90%;
+        }
+        #next
+        {
+            position:absolute;
+            left:55%;
+            top:90%;
+        }
+        #page
+        {
+            position:absolute;
+            left:42%;
+            top:90%;
+        }
+        #homepage
+        {
+            position:absolute;
+            left:5%;
+            top:90%;
+        }
+     
+    </style>
+<head>
+
+<body background="{{ STATIC_URL }}resources/rbg2.jpg">
+    <h2 id="title">Resources Download </h2>
+    <div id="back">
+        <h2>Catalog</h2><a href="{{ catalog.url }}">{{ catalog.name }}</a>
+        <p>Description: {{ catalog.desc }}</p>
+    </div>
+    
+    
+    <p id="page">{{page.current}} / {{page.total}}</p>
+    {% if page.prev != '' %}
+        <button id="last" onclick="href='{{ page.prev }}'">last page</button>
+    {% endif %}
+    
+    {% if page.next != '' %}
+        <button id="next" onclick="href='{{ page.next }}'">next page</button>
+    {% endif %}
+        
+    <button id="homepage" onclick="href=''">Back to homepage </button>
+    
+    {% if not res_list %}
+        <p>No resources yet:-)</p>
+    {% else %}
+        <table border="1" id="re" align="center">
+            {% for catalog in catalog_list %}
+        <tr>
+            <td><a href="{{ catalog.url }}">{{ catalog.name }}</a></td>
+            <td>{{ catalog.desc }}</td>
+        </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    
+</body>
+</html>

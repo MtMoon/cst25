@@ -1,18 +1,61 @@
-<p><img src="{{ STATIC_URL }}logo.gif"></p>
-<p><img src="{{ STATIC_URL }}photo/photo.jpg"></p>
-<h2> Album </h2>
-<table>
-{% for album in album_list %}
-<tr>
-<td><a href="{{ album.url }}">{{ album.name }}</a></td>
-<td>{{ album.desc }}</td>
-</tr>
-{% endfor %}
-</table>
-<p>{{ page.current }} / {{ page.total }}</p>
-{% if page.prev != '' %}
-<a href="{{ page.prev }}">Prev Page</a>&nbsp;&nbsp;
-{% endif %}
-{% if page.next != '' %}
-<a href="{{ page.next }}">Next Page</a>
-{% endif %}
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+<title>class album</title>
+<meta name="keywords" content="classpage photo album" /> 
+<meta name="author" contenr="Mt.Moon" />
+
+<style>
+    #back
+    {
+        position:absolute;
+        left:10%;
+        top:80%;
+    }
+    #ln
+    {
+        position:absolute;
+        left:20%;
+        top:95%;
+    }
+    #page
+    {
+        position:absolute;
+        left:25%;
+        top:95%;
+    }
+        
+</style>
+    
+
+</head>
+
+<body  background="{{ STATIC_URL }}photo/bg6.jpg">
+    <table border="1" id="list" align="center">
+    {% for album in album_list %}
+    <tr>
+        <td><a href="{{album.url}}">{{album.name}}</a></td>
+        <td>{{album.desc}}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    
+    <p id="page">{{page.current}} / {{page.total}}</p>
+    
+    <div id="ln">
+        {% if page.prev != '' %}
+            <button id="last" onclick="href='{{page.prev}}'">last page</button>
+        {% endif %}
+    
+        {% if page.next != ' ' %} 
+            <button id="next" onclick="href='{{page.next}}'">next page</button> 
+        {% endif %}
+    </div>
+    
+    <button id="back" onclick="href='{{homepage}}'">back to homepage</button>
+    
+</body>
+
+</html>
