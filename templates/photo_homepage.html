@@ -47,10 +47,10 @@
     
     <div id="ln">
         {% if page.prev != '' %}
-            <button id="last" onclick="href='{{page.prev}}'">last page/button>
+            <a id="last" href="{{page.prev}}">last page</a>
         {% endif %}
         {% if page.next != ' ' %} 
-            <button id="next" onclick="href='{{page.next}}'">next page</button> 
+            <a id="next" href="{{page.next}}">next page</a> 
         {% endif %}
     </div>
     
