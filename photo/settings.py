@@ -3,7 +3,7 @@
 ALBUM_NPP = 16
 
 # How many photos are shown in an album page.
-PHOTO_NPP = 16
+PHOTO_NPP = 8
 
 # The URL of the login page.
 LOGIN_URL = '/account/login/'

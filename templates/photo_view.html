@@ -9,13 +9,13 @@
         {
             position:absolute;
             left:5%;
-            top:80%;
+            top:85%;
         }
         #next
         {
             position:absolute;
             left:40%;
-            top:80%;
+            top:85%;
         }
         #page
         {
@@ -32,21 +32,23 @@
         #homepage
         {
             position:absolute;
-            left:85%;
-            top:15%;
+            left:15%;
+            top:90%;
         }
         #homepage_album
         {
             position:absolute;
-            left:85%;
-            top:10%;
+            left:30%;
+            top:87%;
         }
         #form
         {
             position:absolute;
-            left:60%;
             top:60%;
+            right:1%;
         }
+            
+       
             
         
     </style>
@@ -79,14 +81,16 @@
     {% endif %}    
      
      <h2 id="homepage_album"><a href="{{ album.url }}">{{ album.name }}</a></h2>
-     <a id="homepage" href="{{ homepage }}">Back to homepage</button>
+     <a id="homepage" href="{{ homepage }}">Back to homepage</a>
      
-    <form method="post" action="{{ photo.url }}" id="form">
+    <div id="form">
+        <form method="post" action="{{ photo.url }}">
         {% csrf_token %}
         <p>Your comment:</p>
         <p>{{ form.comment }}</p>
         <input type="submit" value="Submit" />
-    </form>
+        </form>
+    </div>
 
     
 
